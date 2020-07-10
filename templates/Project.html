@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>PROYECTO FINAL</title>
+    <link rel="stylesheet" type="text/css" href="static/style_login.css" />
+</head>
+<body>
+    <center>
+        <div class="fondo">
+            <!--estilo para las letras del fromulario-->
+            <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+            <br />
+            <br />
+            <div id="t">
+                <h1><font color=white size="100">WELCOME</font></h1>
+            </div>
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+
+            <div id="hola">
+
+                <form action="" method="post">
+
+                    <h4><font color=white size="10">Username</font></h4>
+                    <input type="text" placeholder="Username" name="username" value="{{request.form.username }}">
+
+                    <br />
+
+                    <h4><font color=white size="7">Password</font></h4>
+                    <input type="password" placeholder="Password" name="password" value="{{request.form.password }}">
+
+                    <br />
+                    <br />
+                    <input class="btn btn-default" type="submit" value="Login">
+
+                </form>
+                {% if error %}
+                <p class="error">
+                    <strong>Error:</strong> {{ error }}
+                {% endif %}
+
+
+            </div>
+        </div>
+    </center>
+</body>
+</html>
