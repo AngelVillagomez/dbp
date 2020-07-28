@@ -1,0 +1,44 @@
+ul{
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+#app {
+  margin-left: 100px;
+}
+/*Localizacion de añadir / botón */
+#add-task-form {
+  position: absolute;
+  right: 100px;
+  display: flex;
+}
+/*Animaciones de task, para el movimiento*/
+.task {
+  list-style-type: none;
+  margin: 16px 0px 0px 0px;
+  padding: 10px 8px 10px 10px;
+  position: relative;
+  background-color: #033241;
+  border: 1px solid #9C7805;
+  box-sizing: border-box;
+  border-radius: 2px;
+  min-height: 80px;
+  width: 288px;
+}
+.task:nth-child(1) {
+  margin-top: 32px;
+}
+.task .task-content {
+  margin: 16px 16px 0 16px;
+  font-family: 'Lato';
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 24px;
+  color: #708384;
+}
+.task .trash {
+  position: absolute;
+  bottom: 8px;
+  right: 8px;
+  color: #54585A;
+}
