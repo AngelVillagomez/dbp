@@ -3,8 +3,8 @@
 <html>
 <head>
     <title>PROYECTO FINAL</title>
-   
-    <link rel="stylesheet" type="text/css" href="static/nsqh.css" />
+
+    <link rel="stylesheet" type="text/css" href="static/style_login.css" />
 </head>
 <body>
     <center>
@@ -40,24 +40,25 @@
                     <br />
                     <input class="btn btn-default" type="submit" value="signin">
                     <br />
+                    
 
                 </form>
-
-                <form action="logout">
-
-                    <input id="r" type="" value="ESTOY REGISTRADO" />
-
-                </form>
+                
+                <ul>
+                    <li class="nav-item">
+                        <a id="j" class="nav-link" href="{{url_for('login')}}">
+                            <font color=white >YA ESTOY REGISTRADO</font>
+                        </a>
+                    </li>
+                </ul>
+               
                 {% if error %}
                 <p class="error">
                     <strong>Error:</strong> {{ error }}
                     {% endif %}
-
-
-
             </div>
         </div>
     </center>
-    
+
 </body>
 </html>
