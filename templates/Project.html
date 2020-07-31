@@ -3,51 +3,54 @@
 <html>
 <head>
     <title>PROYECTO FINAL</title>
-
-    <link rel="stylesheet" type="text/css" href="static/style_login.css" />
+    
+    <link rel="stylesheet" type="text/css" href="static/nsqh.css" />
 </head>
 <body>
     <center>
         <div class="fondoucsp">
             <!--estilo para las letras del fromulario-->
-            <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
-            <br />
-            <br />
-            <div id="t">
-                <h1><font color=white size="100">WELCOME</font></h1>
-            </div>
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <br />
+    <br />
+    <div id="t">
+        <h1><font color=white size="100">LOGIN</font></h1>
+    </div>
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+
+    <div id="hola">
+
+        <form action="" method="post">
+
+            <h4><font color=white size="7">Username</font></h4>
+            <input type="text" placeholder="Username" name="username" value="">
+
             <br />
 
-            <div id="hola">
+            <h4><font color=white size="7">Password</font></h4>
+            <input type="password" placeholder="Password" name="password" value="">
 
-                <form action="" method="post">
+            <br />
+            <br />
+            <input class="btn btn-default" type="submit" value="Login">
 
-                    <h4><font color=white size="7">Username</font></h4>
-                    <input type="text" placeholder="Username" name="username" value="">
+        </form>
+        {% if error %}
+        <p class="error">
+            <strong>Error:</strong> {{ error }}
+            {% endif %}
+   
 
-                    <br />
 
-                    <h4><font color=white size="7">Password</font></h4>
-                    <input type="password" placeholder="Password" name="password" value="">
-
-                    <br />
-                    <br />
-                    <input class="btn btn-default" type="submit" value="Login">
-
-                </form>
-                {% if error %}
-                <p class="error">
-                    <strong>Error:</strong> {{ error }}
-                    {% endif %}
-            </div>
+        </div>
         </div>
     </center>
-
+    
 </body>
 </html>
