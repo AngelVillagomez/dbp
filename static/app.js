@@ -1,80 +1,74 @@
+document.getElementById('formTask').addEventListener('submit', saveTask);
 
-document.getElementById('add-task').addEventListener('click', function() {
-    let taskValue = document.getElementById('task-value').value;
-    if (taskValue) addTask(taskValue);
-    document.getElementById('task-value').value = '';
-});
+function saveTask(e) {
+    //Variable Titulo...
+  let title = document.getElementById('title').value;
+    //Variable Descripcion...
+  let description = document.getElementById('description').value;
+  console.log(description)
+  var type = document.getElementById('typeSelect').value;
+  //var t = 'typeSelect';
+  //let typeSelect = document.getElementById('typeSelect').value;
+  //console.log(typeSelect)
 
-const addTask = function (taskValue) {
-    let task = document.createElement('li');
-    task.classList.add('task');
-    task.classList.add('fill');
-    task.setAttribute("draggable", "true");
-    task.addEventListener('dragstart', dragStart);
-    task.addEventListener('dragend', dragEnd);
+  let task = {
+    title,//title: title
+    description//description: description
+  };
+  if(localStorage.getItem('tasks') === null) {
+    let tasks = [];
+    tasks.push(task);
+    localStorage.setItem('tasks', JSON.stringify(tasks));//JSON objeto a string
+  } else {
+    let tasks = JSON.parse(localStorage.getItem('tasks'));
+    tasks.push(task);
+    localStorage.setItem('tasks', JSON.stringify(tasks));
+  }
 
-    let taskContent = document.createElement('div');
-    taskContent.classList.add('task-content');
-    taskContent.innerText = taskValue;
-
-    let trash = document.createElement('div');
-    trash.classList.add('trash');
-    trash.innerText = "X";
-    trash.addEventListener('click', removeTask);
-
-    task.appendChild(taskContent);
-    task.appendChild(trash);
-
-    let tasks = document.getElementById('tasks-added');
-    tasks.insertBefore(task, tasks.childNodes[0]);
+  getTasks();
+  document.getElementById('formTask').reset();
+  e.preventDefault();
 }
 
-const removeTask = (event) => {
-    let tasks = event.target.parentNode.parentNode;
-    let task = event.target.parentNode;
-    tasks.removeChild(task);
-}
-
-let task
-const dragStart = (event) => {
-    event.target.className += ' hold';
-    task = event.target;
-}
-
-const dragEnd = (event) => {
-    event.target.className = 'task fill';
-}
-
-const dropzones = document.querySelectorAll('.column ');
-
-const dragEnter = (event) => {
-    event.preventDefault();
-    if(event.target.className === "column dropzone") {
-        event.target.className += ' hovered';
+function deleteTask(title) {
+  console.log(title)
+  let tasks = JSON.parse(localStorage.getItem('tasks'));
+  for(let i = 0; i < tasks.length; i++) {
+    if(tasks[i].title == title) {
+      tasks.splice(i, 1);
     }
+  }
+
+  localStorage.setItem('tasks', JSON.stringify(tasks));
+  getTasks();
 }
 
-const dragOver = (event) => {
-    event.preventDefault();
+function getTasks() {
+  let tasks = JSON.parse(localStorage.getItem('tasks'));
+  //var lista = document.getElementById('typeSelect');
+  //var valorSeleccionado = lista.options[lista.selectedIndex].value;
+  //var textoSeleccionado = lista.options[lista.selectedIndex].text;
+  //alert("Opcion seleccionada: " + textoSeleccionado + "\n Valor de la operacion: " + valorSeleccionado);
+  var first = document.getElementById('typeSelect').value;
+  console.log('Primer select -> '+first);
+  let tasksView = document.getElementById(first);
+
+  //let tasksView = document.getElementByClassName("custom-select");
+  //let tasksView = document.getElementById('typeSelect').value;
+  //console.log(tasksView);
+  tasksView.innerHTML = '';
+  for(let i = 0; i < tasks.length; i++) {
+    let title = tasks[i].title;
+    let description = tasks[i].description;
+
+    tasksView.innerHTML += `<div class="card mb-3">
+        <div class="card-body">
+          <p>${title} - ${description}
+          <a href="#" onclick="deleteTask('${title}')" class="btn btn-outline-success ml-5">Delete</a>
+          </p>
+        </div>
+      </div>`;
+  }
 }
 
-const dragLeave = (event) => {
-    if(event.target.className === "column dropzone hovered") {
-        event.target.className = "column dropzone"
-    }
-}
-
-const dragDrop = (event) => {
-    if(event.target.className === "column dropzone hovered") {
-        event.target.className = "column dropzone"
-    }
-    event.target.append(task);
-}
-
-for(const dropzone of dropzones) {
-    dropzone.addEventListener('dragenter', dragEnter);
-    dropzone.addEventListener('dragover', dragOver);
-    dropzone.addEventListener('dragleave', dragLeave);
-    dropzone.addEventListener('drop', dragDrop);
-}
-
+getTasks();
