@@ -39,14 +39,11 @@ let task
 const dragStart = (event) => {
     event.target.className += ' hold';
     task = event.target;
-    setTimeout(() => (event.target.className = 'invisible'), 0);
 }
 
 const dragEnd = (event) => {
     event.target.className = 'task fill';
 }
-
-const dropzones = document.querySelectorAll('.column ');
 
 const dragEnter = (event) => {
     event.preventDefault();
