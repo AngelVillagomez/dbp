@@ -45,6 +45,8 @@ const dragEnd = (event) => {
     event.target.className = 'task fill';
 }
 
+const dropzones = document.querySelectorAll('.column ');
+
 const dragEnter = (event) => {
     event.preventDefault();
     if(event.target.className === "column dropzone") {
